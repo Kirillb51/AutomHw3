@@ -91,5 +91,15 @@ public class ChromeSeleniumTest {
 
     }
 
+    @Test
+    public void testWithoutCheckMark() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Петров-Иванов");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79123456789");
+        driver.findElement(By.className("button")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id=agreement].input_invalid")).getText();
+        assertEquals("Я соглашаюсь с условиями обработки и использования моих" +
+                " персональных данных и разрешаю сделать запрос в бюро кредитных историй", text.trim());
 
+
+    }
 }
